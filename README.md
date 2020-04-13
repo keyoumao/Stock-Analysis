@@ -13,30 +13,30 @@ Sub AllStocksAnalysis()
     Cells(3, 1).Value = "Ticker"
     Cells(3, 2).Value = "Total Daily Volume"
     Cells(3, 3).Value = "Return"
+    
+    
+    
     Dim tickers(12) As String
-
-    tickers(0) = "AY"
-    tickers(1) = "CSIQ"
-    tickers(2) = "DQ"
-    tickers(3) = "ENPH"
-    tickers(4) = "FSLR"
-    tickers(5) = "HASI"
-    tickers(6) = "JKS"
-    tickers(7) = "RUN"
-    tickers(8) = "SEDG"
-    tickers(9) = "SPWR"
-    tickers(10) = "TERP"
-    tickers(11) = "VSLR"
-
-
+    Dim totalVolume(12) As Single
+    Dim startingPrice(12) As Double
+    Dim endingPrice(12) As Double
+            
+    
     Worksheets(yearValue).Activate
 
     'get the number of rows to loop over
     RowCount = Cells(Rows.Count, "A").End(xlUp).Row
     
-    Dim totalVolume(12) As Single
-    Dim startingPrice(12) As Double
-    Dim endingPrice(12) As Double
+    
+    tickerIndex = 0
+    For Rs = 2 To RowCount
+        
+        If Cells(Rs + 1, 1).Value <> Cells(Rs, 1).Value Then
+        tickers(tickerIndex) = Cells(Rs, 1).Value
+        tickerIndex = tickerIndex + 1
+        End If
+        
+    Next Rs
     
     
     
@@ -166,3 +166,4 @@ Sub AllStocksAnalysis()
 
     
 End Sub
+
